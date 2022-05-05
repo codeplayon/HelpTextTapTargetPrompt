@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:id="@+id/nav_hader"
+    android:background="@color/purple_700"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:paddingTop="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/close_navibar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="40dp"
+        android:layout_gravity="start"
+        app:tint="@color/white"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/NaviHeaderName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="0dp"
+                android:inputType="textCapSentences"
+                android:textStyle="bold"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:text="Codeplayon"/>
+            <TextView
+                android:id="@+id/NaviMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:padding="0dp"
+                android:singleLine="true"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:text="Android App Intro Help text suggestion"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"/>
+
+</LinearLayout>
