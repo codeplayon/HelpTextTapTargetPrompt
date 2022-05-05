@@ -8,10 +8,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 
+import com.codeplayon.introhelptext.MaterialShowcaseSequence;
+import com.codeplayon.introhelptext.MaterialShowcaseView;
+import com.codeplayon.introhelptext.ShowcaseConfig;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
+    View hView;
+    private static final String SHOWCASE_ID = "Parmit_Malik";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,50 +38,52 @@ public class MainActivity extends AppCompatActivity {
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        hView = navigationView.getHeaderView(0);
+
+        AppShowcase();
 
     }
 
-//    private void AppShowcase() {
-////        isFirstTime = new SessionManagement().isFirstTimeLogin(this);
-//            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//            drawer.openDrawer(GravityCompat.START);
-//            new CountDownTimer(3000, 1000) {
-//
-//                public void onTick(long millisUntilFinished) {
-//
-//                    //here you can have your logic to set text to edittext
-//                }
-//                public void onFinish() {
-//                    if (drawer.isDrawerOpen(GravityCompat.START)) {
-//                        drawer.closeDrawer(GravityCompat.START);
-//                    }
-//                }
-//
-//            }.start();
-//
-//        ShowcaseConfig config = new ShowcaseConfig();
-//        config.setDelay(500); // half second between each showcase view
-//        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
-//        sequence.setOnItemShownListener(new MaterialShowcaseSequence.OnSequenceItemShownListener() {
-//            @Override
-//            public void onShow(MaterialShowcaseView itemView, int position) {
-//                new SessionManagement().setFirstTimeLoginEnabled(false, PostLoginMainActivity.this);
-//
-//            }
-//        });
-//
-//        sequence.setConfig(config);
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(hView.findViewById(R.id.close_navibar))
-//                        .setTitleText(getResources().getString(R.string.navi_bar))
-//                        .setContentText(getResources().getString(R.string.navi_bar_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .setContentTextColor(getResources().getColor(R.color.whiteColor))
-//                        .build()
-//        );
-//
+    private void AppShowcase() {
+//        isFirstTime = new SessionManagement().isFirstTimeLogin(this);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.openDrawer(GravityCompat.START);
+            new CountDownTimer(3000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+
+                    //here you can have your logic to set text to edittext
+                }
+                public void onFinish() {
+                    if (drawer.isDrawerOpen(GravityCompat.START)) {
+                        drawer.closeDrawer(GravityCompat.START);
+                    }
+                }
+
+            }.start();
+
+        ShowcaseConfig config = new ShowcaseConfig();
+        config.setDelay(500); // half second between each showcase view
+        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
+        sequence.setOnItemShownListener(new MaterialShowcaseSequence.OnSequenceItemShownListener() {
+            @Override
+            public void onShow(MaterialShowcaseView itemView, int position) {
+
+            }
+        });
+
+        sequence.setConfig(config);
+        sequence.addSequenceItem(
+                new MaterialShowcaseView.Builder(this)
+                        .setTarget(hView.findViewById(R.id.close_navibar))
+                        .setTitleText("Navi Bar ")
+                        .setContentText("This is an Navi bar menu you can see more menu hara")
+                        .setDismissText(getResources().getString(R.string.gotit))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .setContentTextColor(getResources().getColor(R.color.white))
+                        .build()
+        );
+
 //        sequence.addSequenceItem(
 //                new MaterialShowcaseView.Builder(this)
 //                        .setTarget(findViewById(R.id.PostApplyForLoan))
@@ -137,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
 //                        .setSkipText(getResources().getString(R.string.skip))
 //                        .build()
 //        );
-//
-//
-//        sequence.start();
-//    }
+
+
+        sequence.start();
+    }
 
 }
