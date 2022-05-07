@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import com.codeplayon.introhelptext.target.Target;
+import com.codeplayon.introhelptext.target.HelpTextTarget;
 
 public class CircleShape implements Shape {
 
@@ -23,7 +23,7 @@ public class CircleShape implements Shape {
         this(getPreferredRadius(bounds));
     }
 
-    public CircleShape(Target target) {
+    public CircleShape(HelpTextTarget target) {
         this(target.getBounds());
     }
 
@@ -51,7 +51,7 @@ public class CircleShape implements Shape {
     }
 
     @Override
-    public void updateTarget(Target target) {
+    public void updateTarget(HelpTextTarget target) {
         if (adjustToTarget)
             radius = getPreferredRadius(target.getBounds());
     }

@@ -3,7 +3,7 @@ package com.codeplayon.introhelptext.shape;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.codeplayon.introhelptext.target.Target;
+import com.codeplayon.introhelptext.target.HelpTextTarget;
 
 
 public interface Shape {
@@ -25,7 +25,7 @@ public interface Shape {
     /**
      * Update shape bounds if necessary
      */
-    void updateTarget(Target target);
+    void updateTarget(HelpTextTarget target);
 
     int getTotalRadius();
 

@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
-public class CircularRevealAnimationFactory implements IAnimationFactory {
+public class CircularRevealAnimationFactory implements AnimationFactory {
 
     private static final String ALPHA = "alpha";
     private static final float INVISIBLE = 0f;
@@ -83,7 +83,7 @@ public class CircularRevealAnimationFactory implements IAnimationFactory {
     }
 
     @Override
-    public void animateTargetToPoint(MaterialShowcaseView showcaseView, Point point) {
+    public void animateTargetToPoint(MaterialHelptextView showcaseView, Point point) {
         AnimatorSet set = new AnimatorSet();
         ObjectAnimator xAnimator = ObjectAnimator.ofInt(showcaseView, "showcaseX", point.x);
         ObjectAnimator yAnimator = ObjectAnimator.ofInt(showcaseView, "showcaseY", point.y);

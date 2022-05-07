@@ -5,8 +5,8 @@ import android.graphics.Typeface;
 
 import com.codeplayon.introhelptext.shape.Shape;
 
-public class ShowcaseConfig {
-    public static final String DEFAULT_MASK_COLOUR = "#dd335075";
+public class HelpTextConfig {
+    public static final String DEFAULT_MASK_COLOUR = "#80000000";
 
     private long mDelay = -1;
     private int mMaskColour;
@@ -19,8 +19,8 @@ public class ShowcaseConfig {
     private int mShapePadding = -1;
     private Boolean renderOverNav;
 
-    public ShowcaseConfig() {
-        mMaskColour = Color.parseColor(ShowcaseConfig.DEFAULT_MASK_COLOUR);
+    public HelpTextConfig() {
+        mMaskColour = Color.parseColor(HelpTextConfig.DEFAULT_MASK_COLOUR);
         mContentTextColor = Color.parseColor("#ffffff");
         mDismissTextColor = Color.parseColor("#ffffff");
     }

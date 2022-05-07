@@ -25,19 +25,19 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 
-public class ShowcaseTooltip {
+public class HelpTextTooltip {
     private View rootView;
     private View view;
     private TooltipView tooltip_view;
 
 
-    private ShowcaseTooltip(Context context){
+    private HelpTextTooltip(Context context){
         MyContext myContext = new MyContext(getActivityContext(context));
         this.tooltip_view = new TooltipView(myContext.getContext());
     }
 
-    public static ShowcaseTooltip build(Context context) {
-        return new ShowcaseTooltip(context);
+    public static HelpTextTooltip build(Context context) {
+        return new HelpTextTooltip(context);
     }
 
     public void configureTarget(ViewGroup rootView, View view) {
@@ -55,42 +55,42 @@ public class ShowcaseTooltip {
         return null;
     }
 
-    public ShowcaseTooltip position(Position position) {
+    public HelpTextTooltip position(Position position) {
         this.tooltip_view.setPosition(position);
         return this;
     }
 
-    public ShowcaseTooltip customView(View customView) {
+    public HelpTextTooltip customView(View customView) {
         this.tooltip_view.setCustomView(customView);
         return this;
     }
 
-    public ShowcaseTooltip customView(int viewId) {
+    public HelpTextTooltip customView(int viewId) {
         this.tooltip_view.setCustomView(((Activity) view.getContext()).findViewById(viewId));
         return this;
     }
 
-    public ShowcaseTooltip arrowWidth(int arrowWidth) {
+    public HelpTextTooltip arrowWidth(int arrowWidth) {
         this.tooltip_view.setArrowWidth(arrowWidth);
         return this;
     }
 
-    public ShowcaseTooltip arrowHeight(int arrowHeight) {
+    public HelpTextTooltip arrowHeight(int arrowHeight) {
         this.tooltip_view.setArrowHeight(arrowHeight);
         return this;
     }
 
-    public ShowcaseTooltip arrowSourceMargin(int arrowSourceMargin) {
+    public HelpTextTooltip arrowSourceMargin(int arrowSourceMargin) {
         this.tooltip_view.setArrowSourceMargin(arrowSourceMargin);
         return this;
     }
 
-    public ShowcaseTooltip arrowTargetMargin(int arrowTargetMargin) {
+    public HelpTextTooltip arrowTargetMargin(int arrowTargetMargin) {
         this.tooltip_view.setArrowTargetMargin(arrowTargetMargin);
         return this;
     }
 
-    public ShowcaseTooltip align(ALIGN align) {
+    public HelpTextTooltip align(ALIGN align) {
         this.tooltip_view.setAlign(align);
         return this;
     }
@@ -147,22 +147,22 @@ public class ShowcaseTooltip {
         return tooltip_view;
     }
 
-    public ShowcaseTooltip color(int color) {
+    public HelpTextTooltip color(int color) {
         this.tooltip_view.setColor(color);
         return this;
     }
 
-    public ShowcaseTooltip color(Paint paint) {
+    public HelpTextTooltip color(Paint paint) {
         this.tooltip_view.setPaint(paint);
         return this;
     }
 
-    public ShowcaseTooltip onDisplay(ListenerDisplay listener) {
+    public HelpTextTooltip onDisplay(ListenerDisplay listener) {
         this.tooltip_view.setListenerDisplay(listener);
         return this;
     }
 
-    public ShowcaseTooltip padding(int left, int top, int right, int bottom) {
+    public HelpTextTooltip padding(int left, int top, int right, int bottom) {
         this.tooltip_view.paddingTop = top;
         this.tooltip_view.paddingBottom = bottom;
         this.tooltip_view.paddingLeft = left;
@@ -170,52 +170,52 @@ public class ShowcaseTooltip {
         return this;
     }
 
-    public ShowcaseTooltip animation(TooltipAnimation tooltipAnimation) {
+    public HelpTextTooltip animation(TooltipAnimation tooltipAnimation) {
         this.tooltip_view.setTooltipAnimation(tooltipAnimation);
         return this;
     }
 
-    public ShowcaseTooltip text(String text) {
+    public HelpTextTooltip text(String text) {
         this.tooltip_view.setText(text);
         return this;
     }
 
-    public ShowcaseTooltip text(int text) {
+    public HelpTextTooltip text(int text) {
         this.tooltip_view.setText(text);
         return this;
     }
 
-    public ShowcaseTooltip corner(int corner) {
+    public HelpTextTooltip corner(int corner) {
         this.tooltip_view.setCorner(corner);
         return this;
     }
 
-    public ShowcaseTooltip textColor(int textColor) {
+    public HelpTextTooltip textColor(int textColor) {
         this.tooltip_view.setTextColor(textColor);
         return this;
     }
 
-    public ShowcaseTooltip textTypeFace(Typeface typeface) {
+    public HelpTextTooltip textTypeFace(Typeface typeface) {
         this.tooltip_view.setTextTypeFace(typeface);
         return this;
     }
 
-    public ShowcaseTooltip textSize(int unit, float textSize) {
+    public HelpTextTooltip textSize(int unit, float textSize) {
         this.tooltip_view.setTextSize(unit, textSize);
         return this;
     }
 
-    public ShowcaseTooltip setTextGravity(int textGravity) {
+    public HelpTextTooltip setTextGravity(int textGravity) {
         this.tooltip_view.setTextGravity(textGravity);
         return this;
     }
 
-    public ShowcaseTooltip distanceWithView(int distance) {
+    public HelpTextTooltip distanceWithView(int distance) {
         this.tooltip_view.setDistanceWithView(distance);
         return this;
     }
 
-    public ShowcaseTooltip border(int color, float width) {
+    public HelpTextTooltip border(int color, float width) {
         Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         borderPaint.setColor(color);
         borderPaint.setStyle(Paint.Style.STROKE);

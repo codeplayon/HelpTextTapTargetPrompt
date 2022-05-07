@@ -2,12 +2,12 @@ package com.codeplayon.introhelptext.shape;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import com.codeplayon.introhelptext.target.Target;
+import com.codeplayon.introhelptext.target.HelpTextTarget;
 
 public class NoShape implements Shape {
 
     @Override
-    public void updateTarget(Target target) {
+    public void updateTarget(HelpTextTarget target) {
         // do nothing
     }
 

@@ -30,14 +30,14 @@ import com.codeplayon.introhelptext.shape.NoShape;
 import com.codeplayon.introhelptext.shape.OvalShape;
 import com.codeplayon.introhelptext.shape.RectangleShape;
 import com.codeplayon.introhelptext.shape.Shape;
-import com.codeplayon.introhelptext.target.ISShowcaseListners;
-import com.codeplayon.introhelptext.target.Target;
-import com.codeplayon.introhelptext.target.ViewTarget;
+import com.codeplayon.introhelptext.target.HelpTextListners;
+import com.codeplayon.introhelptext.target.HelpTextTarget;
+import com.codeplayon.introhelptext.target.HelpTextTargetFiled;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterialShowcaseView extends FrameLayout implements View.OnTouchListener, View.OnClickListener {
+public class MaterialHelptextView extends FrameLayout implements View.OnTouchListener, View.OnClickListener {
 
     public static final int DEFAULT_SHAPE_PADDING = 10;
     public static final int DEFAULT_TOOLTIP_MARGIN = 10;
@@ -49,7 +49,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     private Bitmap mBitmap;// = new WeakReference<>(null);
     private Canvas mCanvas;
     private Paint mEraser;
-    private Target mTarget;
+    private HelpTextTarget mTarget;
     private Shape mShape;
     private int mXPosition;
     private int mYPosition;
@@ -70,7 +70,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     private boolean mShouldRender = false; // flag to decide when we should actually render
     private boolean mRenderOverNav = false;
     private int mMaskColour;
-    private IAnimationFactory mAnimationFactory;
+    private AnimationFactory mAnimationFactory;
     private boolean mShouldAnimate = true;
     private boolean mUseFadeAnimation = false;
     private long mFadeDurationInMillis = DEFAULT_FADE_TIME;
@@ -79,34 +79,34 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     private int mBottomMargin = 0;
     private boolean mSingleUse = false; // should display only once
     private PrefsManager mPrefsManager; // used to store state doe single use mode
-    List<ISShowcaseListners> mListeners; // external listeners who want to observe when we show and dismiss
+    List<HelpTextListners> mListeners; // external listeners who want to observe when we show and dismiss
     private UpdateOnGlobalLayout mLayoutListener;
-    private IDetachedListener mDetachedListener;
+    private DetachedListener mDetachedListener;
     private boolean mTargetTouchable = false;
     private boolean mDismissOnTargetTouch = true;
 
     private boolean isSequence = false;
 
-    private ShowcaseTooltip toolTip;
+    private HelpTextTooltip toolTip;
     private boolean toolTipShown;
 
-    public MaterialShowcaseView(Context context) {
+    public MaterialHelptextView(Context context) {
         super(context);
         init(context);
     }
 
-    public MaterialShowcaseView(Context context, AttributeSet attrs) {
+    public MaterialHelptextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public MaterialShowcaseView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MaterialHelptextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public MaterialShowcaseView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public MaterialHelptextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
@@ -124,7 +124,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         // consume touch events
         setOnTouchListener(this);
 
-        mMaskColour = Color.parseColor(ShowcaseConfig.DEFAULT_MASK_COLOUR);
+        mMaskColour = Color.parseColor(HelpTextConfig.DEFAULT_MASK_COLOUR);
         setVisibility(INVISIBLE);
 
 
@@ -233,7 +233,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
 
         if (mListeners != null) {
-            for (ISShowcaseListners listener : mListeners) {
+            for (HelpTextListners listener : mListeners) {
                 listener.onShowcaseDisplayed(this);
             }
         }
@@ -241,7 +241,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
     private void notifyOnDismissed() {
         if (mListeners != null) {
-            for (ISShowcaseListners listener : mListeners) {
+            for (HelpTextListners listener : mListeners) {
                 listener.onShowcaseDismissed(this);
             }
 
@@ -293,7 +293,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
      *
      * @param target
      */
-    public void setTarget(Target target) {
+    public void setTarget(HelpTextTarget target) {
         mTarget = target;
 
         // update dismiss button state
@@ -400,9 +400,9 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             }
 
             if (mGravity == Gravity.BOTTOM) {
-                toolTip.position(ShowcaseTooltip.Position.TOP);
+                toolTip.position(HelpTextTooltip.Position.TOP);
             } else {
-                toolTip.position(ShowcaseTooltip.Position.BOTTOM);
+                toolTip.position(HelpTextTooltip.Position.BOTTOM);
             }
         }
     }
@@ -434,7 +434,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     }
 
 
-    private void setToolTip(ShowcaseTooltip toolTip) {
+    private void setToolTip(HelpTextTooltip toolTip) {
         this.toolTip = toolTip;
     }
 
@@ -529,19 +529,19 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         mUseFadeAnimation = useFadeAnimation;
     }
 
-    public void addShowcaseListener(ISShowcaseListners showcaseListener) {
+    public void addShowcaseListener(HelpTextListners showcaseListener) {
         if (mListeners != null)
             mListeners.add(showcaseListener);
     }
 
-    public void removeShowcaseListener(MaterialShowcaseSequence showcaseListener) {
+    public void removeShowcaseListener(MaterialHelpTextSequence showcaseListener) {
 
         if ((mListeners != null) && mListeners.contains(showcaseListener)) {
             mListeners.remove(showcaseListener);
         }
     }
 
-    void setDetachedListener(IDetachedListener detachedListener) {
+    void setDetachedListener(DetachedListener detachedListener) {
         mDetachedListener = detachedListener;
     }
 
@@ -549,7 +549,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         this.mShape = mShape;
     }
 
-    public void setAnimationFactory(IAnimationFactory animationFactory) {
+    public void setAnimationFactory(AnimationFactory animationFactory) {
         this.mAnimationFactory = animationFactory;
     }
 
@@ -558,7 +558,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
      *
      * @param config
      */
-    public void setConfig(ShowcaseConfig config) {
+    public void setConfig(HelpTextConfig config) {
 
         if(config.getDelay() > -1){
             setDelay(config.getDelay());
@@ -649,14 +649,14 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         private boolean fullWidth = false;
         private int shapeType = CIRCLE_SHAPE;
 
-        final MaterialShowcaseView showcaseView;
+        final MaterialHelptextView showcaseView;
 
         private final Activity activity;
 
         public Builder(Activity activity) {
             this.activity = activity;
 
-            showcaseView = new MaterialShowcaseView(activity);
+            showcaseView = new MaterialHelptextView(activity);
         }
 
         /**
@@ -671,7 +671,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
          * Set the title text shown on the ShowcaseView.
          */
         public Builder setTarget(View target) {
-            showcaseView.setTarget(new ViewTarget(target));
+            showcaseView.setTarget(new HelpTextTargetFiled(target));
             return this;
         }
 
@@ -751,7 +751,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
          *
          * @param toolTip
          */
-        public Builder setToolTip(ShowcaseTooltip toolTip) {
+        public Builder setToolTip(HelpTextTooltip toolTip) {
             showcaseView.setToolTip(toolTip);
             return this;
         }
@@ -812,7 +812,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             return this;
         }
 
-        public Builder setListener(ISShowcaseListners listener) {
+        public Builder setListener(HelpTextListners listener) {
             showcaseView.addShowcaseListener(listener);
             return this;
         }
@@ -873,7 +873,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             return this;
         }
 
-        public MaterialShowcaseView build() {
+        public MaterialHelptextView build() {
             if (showcaseView.mShape == null) {
                 switch (shapeType) {
                     case RECTANGLE_SHAPE: {
@@ -910,7 +910,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
             return showcaseView;
         }
 
-        public MaterialShowcaseView show() {
+        public MaterialHelptextView show() {
             build().show(activity);
             return showcaseView;
         }
@@ -974,13 +974,13 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
         if (toolTip != null) {
 
-            if (!(mTarget instanceof ViewTarget)) {
-                throw new RuntimeException("The target must be of type: " + ViewTarget.class.getCanonicalName());
+            if (!(mTarget instanceof HelpTextTargetFiled)) {
+                throw new RuntimeException("The target must be of type: " + HelpTextTargetFiled.class.getCanonicalName());
             }
 
-            ViewTarget viewTarget = (ViewTarget) mTarget;
+            HelpTextTargetFiled targetFiled = (HelpTextTargetFiled) mTarget;
 
-            toolTip.configureTarget(this, viewTarget.getView());
+            toolTip.configureTarget(this, targetFiled.getView());
 
         }
 
@@ -1043,7 +1043,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
     public void fadeIn() {
         setVisibility(INVISIBLE);
         mAnimationFactory.animateInView(this, mTarget.getPoint(), mFadeDurationInMillis,
-                new IAnimationFactory.AnimationStartListener() {
+                new AnimationFactory.AnimationStartListener() {
                     @Override
                     public void onAnimationStart() {
                         setVisibility(View.VISIBLE);
@@ -1055,7 +1055,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
 
     public void animateOut() {
 
-        mAnimationFactory.animateOutView(this, mTarget.getPoint(), mFadeDurationInMillis, new IAnimationFactory.AnimationEndListener() {
+        mAnimationFactory.animateOutView(this, mTarget.getPoint(), mFadeDurationInMillis, new AnimationFactory.AnimationEndListener() {
             @Override
             public void onAnimationEnd() {
                 setVisibility(INVISIBLE);

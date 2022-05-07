@@ -3,7 +3,7 @@ package com.codeplayon.introhelptext.shape;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import com.codeplayon.introhelptext.target.Target;
+import com.codeplayon.introhelptext.target.HelpTextTarget;
 
 public class RectangleShape implements Shape {
 
@@ -61,7 +61,7 @@ public class RectangleShape implements Shape {
     }
 
     @Override
-    public void updateTarget(Target target) {
+    public void updateTarget(HelpTextTarget target) {
         if (adjustToTarget) {
             Rect bounds = target.getBounds();
             height = bounds.height();

@@ -6,36 +6,36 @@ import android.view.View;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class MaterialShowcaseSequence implements IDetachedListener {
+public class MaterialHelpTextSequence implements DetachedListener {
 
     PrefsManager mPrefsManager;
-    Queue<MaterialShowcaseView> mShowcaseQueue;
+    Queue<MaterialHelptextView> mShowcaseQueue;
     private boolean mSingleUse = false;
     Activity mActivity;
-    private ShowcaseConfig mConfig;
+    private HelpTextConfig mConfig;
     private int mSequencePosition = 0;
 
     private OnSequenceItemShownListener mOnItemShownListener = null;
     private OnSequenceItemDismissedListener mOnItemDismissedListener = null;
 
-    public MaterialShowcaseSequence(Activity activity) {
+    public MaterialHelpTextSequence(Activity activity) {
         mActivity = activity;
         mShowcaseQueue = new LinkedList<>();
     }
 
-    public MaterialShowcaseSequence(Activity activity, String sequenceID) {
+    public MaterialHelpTextSequence(Activity activity, String sequenceID) {
         this(activity);
         this.singleUse(sequenceID);
     }
 
-    public MaterialShowcaseSequence addSequenceItem(View targetView, String content, String dismissText) {
+    public MaterialHelpTextSequence addSequenceItem(View targetView, String content, String dismissText) {
         addSequenceItem(targetView, "", content, dismissText);
         return this;
     }
 
-    public MaterialShowcaseSequence addSequenceItem(View targetView, String title, String content, String dismissText) {
+    public MaterialHelpTextSequence addSequenceItem(View targetView, String title, String content, String dismissText) {
 
-        MaterialShowcaseView sequenceItem = new MaterialShowcaseView.Builder(mActivity)
+        MaterialHelptextView sequenceItem = new MaterialHelptextView.Builder(mActivity)
                 .setTarget(targetView)
                 .setTitleText(title)
                 .setDismissText(dismissText)
@@ -51,7 +51,7 @@ public class MaterialShowcaseSequence implements IDetachedListener {
         return this;
     }
 
-    public MaterialShowcaseSequence addSequenceItem(MaterialShowcaseView sequenceItem) {
+    public MaterialHelpTextSequence addSequenceItem(MaterialHelptextView sequenceItem) {
 
         if (mConfig != null) {
             sequenceItem.setConfig(mConfig);
@@ -61,7 +61,7 @@ public class MaterialShowcaseSequence implements IDetachedListener {
         return this;
     }
 
-    public MaterialShowcaseSequence singleUse(String sequenceID) {
+    public MaterialHelpTextSequence singleUse(String sequenceID) {
         mSingleUse = true;
         mPrefsManager = new PrefsManager(mActivity, sequenceID);
         return this;
@@ -116,7 +116,7 @@ public class MaterialShowcaseSequence implements IDetachedListener {
     private void showNextItem() {
 
         if (mShowcaseQueue.size() > 0 && !mActivity.isFinishing()) {
-            MaterialShowcaseView sequenceItem = mShowcaseQueue.remove();
+            MaterialHelptextView sequenceItem = mShowcaseQueue.remove();
             sequenceItem.setDetachedListener(this);
             sequenceItem.show(mActivity);
             if (mOnItemShownListener != null) {
@@ -137,7 +137,7 @@ public class MaterialShowcaseSequence implements IDetachedListener {
         mShowcaseQueue.clear();
 
         if (mShowcaseQueue.size() > 0 && !mActivity.isFinishing()) {
-            MaterialShowcaseView sequenceItem = mShowcaseQueue.remove();
+            MaterialHelptextView sequenceItem = mShowcaseQueue.remove();
             sequenceItem.setDetachedListener(this);
             sequenceItem.show(mActivity);
             if (mOnItemShownListener != null) {
@@ -155,7 +155,7 @@ public class MaterialShowcaseSequence implements IDetachedListener {
 
 
     @Override
-    public void onShowcaseDetached(MaterialShowcaseView showcaseView, boolean wasDismissed, boolean wasSkipped) {
+    public void onShowcaseDetached(MaterialHelptextView showcaseView, boolean wasDismissed, boolean wasSkipped) {
 
         showcaseView.setDetachedListener(null);
 
@@ -196,16 +196,16 @@ public class MaterialShowcaseSequence implements IDetachedListener {
         }
     }
 
-    public void setConfig(ShowcaseConfig config) {
+    public void setConfig(HelpTextConfig config) {
         this.mConfig = config;
     }
 
     public interface OnSequenceItemShownListener {
-        void onShow(MaterialShowcaseView itemView, int position);
+        void onShow(MaterialHelptextView itemView, int position);
     }
 
     public interface OnSequenceItemDismissedListener {
-        void onDismiss(MaterialShowcaseView itemView, int position);
+        void onDismiss(MaterialHelptextView itemView, int position);
     }
 
 }

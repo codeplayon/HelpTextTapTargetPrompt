@@ -3,7 +3,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     android:layout_height="match_parent">
+
+
+
+    <Button
+        android:id="@+id/Button1"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:text="Button 1"/>
+
+    <Button
+        android:id="@+id/Button2"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:text="Button 2"/>
+    <Button
+        android:id="@+id/Button3"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:text="Button 3"/>
+    <Button
+        android:id="@+id/Button4"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:text="Button 4"/>
+    <Button
+        android:id="@+id/Button5"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:textColor="@color/white"
+        android:text="Button 5"/>
 
 
 

@@ -5,7 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import com.codeplayon.introhelptext.target.Target;
+import com.codeplayon.introhelptext.target.HelpTextTarget;
 
 public class OvalShape implements Shape {
     private int radius;
@@ -27,7 +27,7 @@ public class OvalShape implements Shape {
         this(getPreferredRadius(bounds));
     }
 
-    public OvalShape(Target target) {
+    public OvalShape(HelpTextTarget target) {
         this(target.getBounds());
     }
 
@@ -60,7 +60,7 @@ public class OvalShape implements Shape {
 
     }
 
-    public void updateTarget(Target target) {
+    public void updateTarget(HelpTextTarget target) {
         if (this.adjustToTarget) {
             this.radius = getPreferredRadius(target.getBounds());
         }

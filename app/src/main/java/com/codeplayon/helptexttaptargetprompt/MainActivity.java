@@ -9,15 +9,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.Button;
 
-import com.codeplayon.introhelptext.MaterialShowcaseSequence;
-import com.codeplayon.introhelptext.MaterialShowcaseView;
-import com.codeplayon.introhelptext.ShowcaseConfig;
+import com.codeplayon.introhelptext.MaterialHelpTextSequence;
+import com.codeplayon.introhelptext.MaterialHelptextView;
+import com.codeplayon.introhelptext.HelpTextConfig;
+import com.codeplayon.introhelptext.shape.CircleShape;
+import com.codeplayon.introhelptext.shape.NoShape;
+import com.codeplayon.introhelptext.shape.OvalShape;
+import com.codeplayon.introhelptext.shape.RectangleShape;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     View hView;
-    private static final String SHOWCASE_ID = "Parmit_Malik";
+    private static final String HelpText_ID = "Parmit_Malik";
+    Button Button1, Button2,Button3,Button4,Button5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,82 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         hView = navigationView.getHeaderView(0);
+        Button1 =findViewById(R.id.Button1);
+        Button2=findViewById(R.id.Button2);
+        Button3 =findViewById(R.id.Button3);
+        Button4=findViewById(R.id.Button4);
+        Button5 =findViewById(R.id.Button5);
+        Button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialHelptextView.Builder(MainActivity.this)
+                        .setTarget(Button1)
+                        .setDismissText("GOT IT")
+                        .setShapePadding(100)
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .setContentText("This is some amazing feature you should know about")
+                        .setDelay(500)
+                        .singleUse("1")
+                        .show();
+            }
+        });
+        Button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialHelptextView.Builder(MainActivity.this)
+                        .setTarget(Button2)
+                        .setDismissText("GOT IT")
+                        .setShape(new OvalShape())
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .setContentText("This is some amazing feature you should know about")
+                        .setDelay(500)
+                        .singleUse("2")
+                        .show();
+            }
+        });
+        Button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialHelptextView.Builder(MainActivity.this)
+                        .setTarget(Button3)
+                        .setDismissText("GOT IT")
+                        .setShape(new CircleShape())
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .setContentText("This is some amazing feature you should know about")
+                        .setDelay(500)
+                        .singleUse("3")
+                        .show();
+            }
+        });
+        Button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialHelptextView.Builder(MainActivity.this)
+                        .setTarget(Button4)
+                        .setDismissText("GOT IT")
+                        .setShape(new RectangleShape(160,50))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .setContentText("This is some amazing feature you should know about")
+                        .setDelay(500)
+                        .singleUse("4")
+                        .show();
+            }
+        });
 
+        Button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new MaterialHelptextView.Builder(MainActivity.this)
+                        .setTarget(Button5)
+                        .setDismissText("GOT IT")
+                        .setShape(new NoShape())
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .setContentText("This is some amazing feature you should know about")
+                        .setDelay(500)
+                        .singleUse("5")
+                        .show();
+            }
+        });
         AppShowcase();
 
     }
@@ -62,19 +143,19 @@ public class MainActivity extends AppCompatActivity {
 
             }.start();
 
-        ShowcaseConfig config = new ShowcaseConfig();
+        HelpTextConfig config = new HelpTextConfig();
         config.setDelay(500); // half second between each showcase view
-        MaterialShowcaseSequence sequence = new MaterialShowcaseSequence(this, SHOWCASE_ID);
-        sequence.setOnItemShownListener(new MaterialShowcaseSequence.OnSequenceItemShownListener() {
+        MaterialHelpTextSequence sequence = new MaterialHelpTextSequence(this, HelpText_ID);
+        sequence.setOnItemShownListener(new MaterialHelpTextSequence.OnSequenceItemShownListener() {
             @Override
-            public void onShow(MaterialShowcaseView itemView, int position) {
+            public void onShow(MaterialHelptextView itemView, int position) {
 
             }
         });
 
         sequence.setConfig(config);
         sequence.addSequenceItem(
-                new MaterialShowcaseView.Builder(this)
+                new MaterialHelptextView.Builder(this)
                         .setTarget(hView.findViewById(R.id.close_navibar))
                         .setTitleText("Navi Bar ")
                         .setContentText("This is an Navi bar menu you can see more menu hara")
@@ -84,67 +165,62 @@ public class MainActivity extends AppCompatActivity {
                         .build()
         );
 
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(findViewById(R.id.PostApplyForLoan))
-//                        .setTitleText(getResources().getString(R.string.topUp))
-//                        .setContentText(getResources().getString(R.string.topup_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .build()
-//
-//        );
-//
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(findViewById(R.id.PostPayDues))
-//                        .setTitleText(getResources().getString(R.string.pay_dues))
-//                        .setContentText(getResources().getString(R.string.pay_dues_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .build()
-//        );
-//
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(findViewById(R.id.PostSaathiRefer))
-//                        .setTitleText(getResources().getString(R.string.saath_refral))
-//                        .setContentText(getResources().getString(R.string.saath_refral_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .build()
-//        );
-//
-//
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(findViewById(R.id.DownloadDoc))
-//                        .setTitleText(getResources().getString(R.string.download_documents))
-//                        .setContentText(getResources().getString(R.string.download_documents_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .build()
-//        );
-//
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(findViewById(R.id.PostProperty_Papers))
-//                        .setTitleText(getResources().getString(R.string.property_papers))
-//                        .setContentText(getResources().getString(R.string.location_property_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .build()
-//        );
-//
-//        sequence.addSequenceItem(
-//                new MaterialShowcaseView.Builder(this)
-//                        .setTarget(findViewById(R.id.PostTreckStatus))
-//                        .setTitleText(getResources().getString(R.string.track_status))
-//                        .setContentText(getResources().getString(R.string.track_status_help))
-//                        .setDismissText(getResources().getString(R.string.gotit))
-//                        .setSkipText(getResources().getString(R.string.skip))
-//                        .build()
-//        );
+       sequence.addSequenceItem(
+                new MaterialHelptextView.Builder(this)
+                        .setTarget(findViewById(R.id.Button1))
+                        .setTitleText("Help Text")
+                        .setContentText("App Suggestion Help text")
+                        .setDismissText(getResources().getString(R.string.gotit))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .build()
+
+        );
+
+        sequence.addSequenceItem(
+                new MaterialHelptextView.Builder(this)
+                        .setTarget(findViewById(R.id.Button2))
+                        .setTitleText("Help Text")
+                        .setContentText("App Suggestion Help text with Rectangle Shape ")
+                        .setShape(new RectangleShape(160,50))
+                        .setDismissText(getResources().getString(R.string.gotit))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialHelptextView.Builder(this)
+                        .setTarget(findViewById(R.id.Button3))
+                        .setTitleText("Help Text")
+                        .setContentText("App Suggestion Help text with Circle Shape ")
+                        .setShape(new CircleShape())
+                        .setDismissText(getResources().getString(R.string.gotit))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .build()
+        );
+
+
+        sequence.addSequenceItem(
+                new MaterialHelptextView.Builder(this)
+                        .setTarget(findViewById(R.id.Button4))
+                        .setTitleText("Help Text")
+                        .setContentText("App Suggestion Help text with Oval Shape ")
+                        .setShape(new OvalShape())
+                        .setDismissText(getResources().getString(R.string.gotit))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .build()
+        );
+
+        sequence.addSequenceItem(
+                new MaterialHelptextView.Builder(this)
+                        .setTarget(findViewById(R.id.Button5))
+                        .setTitleText("Help Text")
+                        .setContentText("App Suggestion Help text with No Shape ")
+                        .setShape(new NoShape())
+                        .setDismissText(getResources().getString(R.string.gotit))
+                        .setSkipText(getResources().getString(R.string.skip))
+                        .build()
+        );
+
 
 
         sequence.start();

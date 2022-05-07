@@ -9,7 +9,7 @@ public class PrefsManager  {
     public static int SEQUENCE_FINISHED = -1;
 
 
-    private static final String PREFS_NAME = "material_showcaseview_prefs";
+    private static final String PREFS_NAME = "material_helptext_prefs";
     private static final String STATUS = "status_";
     private String showcaseID = null;
     private Context context;

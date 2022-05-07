@@ -5,15 +5,15 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.View;
 
-public class ViewTarget implements Target {
+public class HelpTextTargetFiled implements HelpTextTarget {
 
         private final View mView;
 
-    public ViewTarget(View view) {
+    public HelpTextTargetFiled(View view) {
             mView = view;
         }
 
-    public ViewTarget(int viewId, Activity activity) {
+    public HelpTextTargetFiled(int viewId, Activity activity) {
             mView = activity.findViewById(viewId);
         }
 
